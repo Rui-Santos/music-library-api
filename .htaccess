@@ -1,0 +1,9 @@
+Options FollowSymLinks
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+RewriteCond %{HTTPS} off
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/api/v3/$1 [R=301,L]
+RewriteRule ^([^.]+)$ $1.html [QSA]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ bootstrap.php [QSA,L]
